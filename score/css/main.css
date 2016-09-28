@@ -6,9 +6,8 @@
 *
 */
 
-#opciones{
-    margin:auto;
-    text-align:center;
+#autor{
+    font-size: 0.7em;
 }
 .alltext {
     white-space: normal !important;
