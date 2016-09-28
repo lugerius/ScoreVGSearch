@@ -13,19 +13,29 @@ $(function() {
 		query = $("#suggest").val().toLowerCase(),
 		html = "";
 		ul.html( "" );
-		if ( query && query.length > 1 ) { // A partir de dos caracteres inicia busqueda 
+		getByGame 	= $("#juego").prop('checked');
+		getByTrack	= $("#cancion").prop('checked');
+		getByCreator= $("#artista").prop('checked');
+		getByYear	= $("#anyo").prop('checked');
+		if ( query && query.length > 2 ) { // A partir de dos caracteres inicia busqueda 
 			$("#autocomplete").fadeIn(50);
 			ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
 			ul.listview( "refresh" );
-			$.getJSON( "js/scorevg.json", function( data ) {
-				$.each( data, function( key, val ) {
-					$.each (val.tracks, function(llave, valor){
-						gameName = valor.game.toLowerCase();
-						if (gameName.includes(query) || val.name.toLowerCase().includes(query)) {
-							html += '<li><a href="#" class="alltext" onclick="setPlayer(\''+val.url+'\', \''+valor.time+'\');">'+val.name+' T'+valor.id+' - ' + valor.game + '</a></li>';
-						}
-					})
-				});
+			$.getJSON( "js/score.json", function( data ) {
+				$.each ( data , function(key, val){
+					score 	= val["0"];
+					uri 	= val["1"];
+					time 	= val["2"];
+					game 	= val["3"].toLowerCase();
+					track 	= val["4"].toLowerCase();
+					year 	= val["5"].toLowerCase();
+					creator = val["6"].toLowerCase();
+					publish	= val["7"].toLowerCase();
+					trackNum= val["9"];
+					if (game.includes(query) || track.includes(query) || creator.includes(query) || year.includes(query) || publish.includes(query) || query.includes("score-"+score+"-")) {
+						html += '<li><a href="#" class="alltext" onclick="setPlayer(\''+uri+'\', \''+time+'\');">score-'+score+' T'+trackNum+' - ' + game + ' ' + track + ' ' + year + '</a></li>';
+					}
+				})
 				ul.html( html );
 				ul.listview( "refresh" );
 				$('li').removeClass("ui-screen-hidden");
@@ -38,8 +48,9 @@ $(function() {
 
 // Configura el player de soundcloud para ir a un episodio y tiempo deseados
 
-function setPlayer (url, time) {
+function setPlayer (uri, time) {
 	var timems = timeInMs(time);
+	var url = "https://soundcloud.com/scorevg/"+uri;
 	var widgetIframe = document.getElementById('sc-widget'),
 	widget       = SC.Widget(widgetIframe);
 	widget.unbind (SC.Widget.Events.READY);

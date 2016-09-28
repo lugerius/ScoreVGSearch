@@ -6,7 +6,10 @@
 *
 */
 
-
+#opciones{
+    margin:auto;
+    text-align:center;
+}
 .alltext {
     white-space: normal !important;
     word-wrap:break-word;
