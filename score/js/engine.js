@@ -13,26 +13,22 @@ $(function() {
 		query = $("#suggest").val().toLowerCase(),
 		html = "";
 		ul.html( "" );
-		getByGame 	= $("#juego").prop('checked');
-		getByTrack	= $("#cancion").prop('checked');
-		getByCreator= $("#artista").prop('checked');
-		getByYear	= $("#anyo").prop('checked');
 		if ( query && query.length > 2 ) { // A partir de dos caracteres inicia busqueda 
 			$("#autocomplete").fadeIn(50);
 			ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
 			ul.listview( "refresh" );
 			$.getJSON( "js/score.json", function( data ) {
 				$.each ( data , function(key, val){
-					score 	= val["0"];
-					uri 	= val["1"];
-					time 	= val["2"];
-					game 	= val["3"].toLowerCase();
-					track 	= val["4"].toLowerCase();
-					year 	= val["5"].toLowerCase();
-					creator = val["6"].toLowerCase();
-					publish	= val["7"].toLowerCase();
-					trackNum= val["9"];
-					if (game.includes(query) || track.includes(query) || creator.includes(query) || year.includes(query) || publish.includes(query) || query.includes("score-"+score+"-")) {
+					var score 	= val["0"];
+					var uri 	= val["1"];
+					var time 	= val["2"];
+					var game 	= val["3"].toLowerCase();
+					var track 	= val["4"].toLowerCase();
+					var year 	= val["5"].toLowerCase();
+					var creator = val["6"].toLowerCase();
+					var publish	= val["7"].toLowerCase();
+					var trackNum= val["9"];
+					if (game.includes(query) || track.includes(query) || creator.includes(query) || year.includes(query) || publish.includes(query) || query.includes("svg-"+score+"-")) {
 						html += '<li><a href="#" class="alltext" onclick="setPlayer(\''+uri+'\', \''+time+'\');">score-'+score+' T'+trackNum+' - ' + game + ' ' + track + ' ' + year + '</a></li>';
 					}
 				})
@@ -75,6 +71,6 @@ function setPlayer (uri, time) {
 
 function timeInMs(time) {
 	var standardTime = time.split(":");
-	ms = (parseInt(standardTime[0])*3600000) + (parseInt(standardTime[1])*60000) + (parseInt(standardTime[2]*1000));
+	var ms = (parseInt(standardTime[0])*3600000) + (parseInt(standardTime[1])*60000) + (parseInt(standardTime[2]*1000));
 	return ms; 
 }
