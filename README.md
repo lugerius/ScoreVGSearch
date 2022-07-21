@@ -1,29 +1,30 @@
 # ScoreVG Search
 
-Aprovechando el trabajo de recapitulación que se hizo en los foros de scorevg, me dispuse a desarrollar un pequeño buscador de tracks.
+Buscador de canciones dentro de los episodios del podcast ScoreVG https://score.vg
 
-Pueden verlo y usarlo desde:
-http://scorevg.uk.to
+Hay dos folders que contienen tanto la versión que usa el motor de soundcloud o bien la que usa youtube.
 
-Está optimizado también para usarse desde dispositivos móviles. Aunque el widget de soundcloud en la versión móvil manda una pantalla donde pregunta donde queremos escucharlo, eligiendo "escuchar en el navegador" funciona correctamente.
+La versión de youtube es la única en uso a partir de julio de 2022.
 
-Ya están integrados todos los episodios a la base de datos y el player es totalmente funcional.
+https://scorevg.us.to
 
-Por la naturaleza del proyecto de recapitulación que fue de manera colaboratva, existen algunos errores en los tiempos de sincronización con los tracks, información faltante, etc. Ahora utilizando el propio ScoreVGSearch Player es mucho mas fácil de identificarlos. 
+Se basa en el proyecto de buscador de preguntas del programa de Artemio y Rolman en Youtube. https://artemiorolman.us.to
+https://github.com/lugerius/ArtemioRolmanYoutube
 
-Si quieres ayudar a completar y corregir la información puedes hacerlo editando
+Permite creación de playlist.
 
-https://docs.google.com/spreadsheets/d/1bRWjQyTQKgawnczJE2HBcyUP0cqA0EGWv-EszGgJS_I/edit?usp=sharing
+Se pueden mandar búsquedas por URI directamente con el formato siguiente
 
-o bien descargando y actualizando el archivo
+https://scorevg.us.to/?q=patron1
 
-js/scorevg.json
+El listado de canciones se encuentran en js/score.json generado a partir de 
+https://docs.google.com/spreadsheets/d/1MkdcrEaQwwijow4YDjWWMPacZw6V8TM08eSqdPPqyY4/edit?usp=sharing
 
-# Para usarlo como aplicación en dispositivos móviles. 
+Si encuentras algún error y quieres colaborar a corregir o completar el listado, favor de contactarme por discord en el canal de scorevg @lugerius https://discord.gg/7g8Fpz9 o por twitter @lugerius
 
-Abrir la página en el navegador.
-En opciones click en añadir a pantalla de inicio.
 
-# Sugerencias
 
-Ahora es mucho más fácil migrar la información ya sea del archivo de hoja de cálculo o del propio JSON a una base de datos (SQL). Este cambio requeriría cambiar un poco el js/engine.js para adaptar la forma en como obtiene los datos.
+
+
+
+
